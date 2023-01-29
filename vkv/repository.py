@@ -1,7 +1,17 @@
 import ast
 import os
 
+import hvac
 import nacl.secret
+
+
+def get_kv(program: str, key: str):
+    set_env()
+    url = os.getenv('URL')
+    token = os.getenv('TOKEN')
+    client = hvac.Client(url=url, token=token)
+    value = client.secrets.kv.v1.read_secret(f'{program}/{key}')['data'][f'{key}']
+    return value
 
 
 def create_box():
