@@ -2,7 +2,7 @@ import os
 
 import nacl.secret
 
-from vkv.repository import get_key_path, create_box
+from vkv.repository import get_key_path, create_box, get_keys
 
 
 def test_if_private_key_exists():
@@ -14,4 +14,8 @@ def test_if_secret_file_exists():
 
 
 def test_if_box_is_a_secret_box():
-    assert type(create_box()) == nacl.secret.SecretBox
+    assert isinstance(create_box(), nacl.secret.SecretBox)
+
+
+def test_decrypted_key_file_is_a_dictionary():
+    assert isinstance(get_keys(), dict)
