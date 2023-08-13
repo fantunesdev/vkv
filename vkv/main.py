@@ -21,3 +21,5 @@ try:
         raise IndexError
 except IndexError:
     print('Opção inválida.')
+    print('vkv [method] [program] [key]')
+    print('Example: vkv get mysql password')
